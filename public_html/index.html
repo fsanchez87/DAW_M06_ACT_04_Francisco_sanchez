@@ -15,22 +15,34 @@ and open the template in the editor.
     <body>
         
         <div id="formulario">
-            <h3>Formulario</h3>
-            <form>
-                <p>Nombre Producto: <input type="text" name="inputNombre" value="" size="20" maxlength="20" /> <br/></p>
-                <p>Código de Barras: <input type="text" name="inputCodigo" value="" size="20" maxlength="20" /> <br/></p>
-                <p>Caducidad dia: <input type="text" name="inputDia" value="" size="8" maxlength="2"> mes: <input type="text" name="inputMes" value="" size="8" maxlength="2"> año: <input type="text" name="inputAño" value="" size="8" maxlength="4"></p>
-                <p>Oferta:
-                    <select name="oferta">
+            <form name="miFormulario">
+                <p>Nombre Producto: <input type="text" id="inputNombre" name="inputNombre" value="" size="20" maxlength="20" /> <br/></p>
+                <p>Código de Barras: <input type="text" id="inputCodigo" name="inputCodigo" value="" size="20" maxlength="20" /> <br/></p>
+                <p>
+                    Caducidad dia: <input type="text" id="inputDia" name="inputDia" value="" size="8" maxlength="2"> 
+                    mes: <input type="text" id="inputMes" name="inputMes" value="" size="8" maxlength="2"> 
+                    año: <input type="text" id="iputAnio" name="inputAnio" value="" size="8" maxlength="4">
+                </p>
+                <p>
+                    Oferta:<select id="oferta" name="oferta">
                         <option value="normal">Normal</option>
                         <option value="2x1">2x1</option>
                         <option value="20%">20%</option>
                         <option value="10%">10%</option>
                     </select>
                 </p>
+                <p>
+                    Congelado <input type="checkbox" id="inputAlimento1" name="inputAlimento1" value="congelado"> 
+                    Fruta <input type="checkbox" id="inputAlimento2" name="inputAlimento1" value="Fruta"> 
+                    Snack<input type="checkbox" id="inputAlimento3" name="inputAlimento3" value="snack"></p>
+                <p>
+                    <input type="submit" id="enviar" name="enviar" value="Regístrate"> 
+                    <input type="reset" id="restablecer" name="restablecer" value="Limpia el formulario">
+                    <input type="button" id="guardar" name="guardar" value="Guardar Datos">
+                    <input type="button" id="recuperar" name="recuperar" value="Recuperar Datos">
+                </p>
+                <p><textarea id="textarea" rows="2" cols="60"></textarea></p>
             </form>
-            
-            
         </div>
     </body>
 </html>
