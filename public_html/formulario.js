@@ -1,22 +1,37 @@
-window.onload = function () {
-    validaAlimentos();
-};
+/*
+ * Funcion para validar un formulario
+ * @returns {undefined}
+ */
+function validaForm() {
+    var formValido = true;
+    
+    if (validaAlimentos()) {
+        window.alert("validaform no valido");
+        formValido = false;
+    }
+
+}
 
 /*
  * 3.	Controla que si no se selecciona algún tipo de alimento (Congelado, Fruta
  *      o Snack) no se envíe el formulario al clicar en Regístrate.
  */
-function validaAlimentos(){
+function validaAlimentos() {
     var formAlimentos = document.forms["miFormulario"]["inputAlimento"];
     console.log(formAlimentos);
-    
-    for(var i=0; i<formAlimentos.length; i++){
-        if (expr) {
-            
+
+    for (var i = 0; i < formAlimentos.length; i++) {
+        if (formAlimentos[i].checked === true) {
+            window.alert("seleccionado");
+            break;
+
         } else {
+            window.alert("Selecciona un alimento");
+            return false;
         }
+
     }
-    
+
 }
 
 
@@ -24,11 +39,15 @@ function validaAlimentos(){
  * 4.	Controla que cada vez que el usuario escribe una letra en un input se 
  *      muestre un mensaje en el TextArea con el valor del input y si su valor es válido.
  *      Para saber si un input es válido ten en cuenta qué:
+ *      
  *   a.	No se debe enviar el formulario si alguno de los inputs es incorrecto.
+ *   
  *   b.	InputNombre  no puede empezar por un número y debe contener entre
  *      3 y 20 caracteres.
+ *      
  *   c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
  *      expresión regular para validar).
+ *      
  *   d.	InputDia , inputMes y inputAno deben formar una fecha válida.
  */
 
