@@ -4,34 +4,34 @@
  */
 function validaForm() {
     var formValido = true;
-    
-    if (validaAlimentos()) {
-        window.alert("validaform no valido");
+
+    if (!validaAlimentos()) {
         formValido = false;
+        window.alert("Elige un alimento");
     }
-
+    
+    if (!validaNombre()) {
+        formValido = false;
+        window.alert("Nombre erronero");
+    }
 }
-
 /*
  * 3.	Controla que si no se selecciona algún tipo de alimento (Congelado, Fruta
  *      o Snack) no se envíe el formulario al clicar en Regístrate.
  */
 function validaAlimentos() {
     var formAlimentos = document.forms["miFormulario"]["inputAlimento"];
-    console.log(formAlimentos);
+    var alimentos = false;
 
     for (var i = 0; i < formAlimentos.length; i++) {
         if (formAlimentos[i].checked === true) {
-            window.alert("seleccionado");
+            alimentos = true;
             break;
-
         } else {
-            window.alert("Selecciona un alimento");
-            return false;
+            alimentos = false;
         }
-
     }
-
+    return alimentos;
 }
 
 
@@ -44,8 +44,21 @@ function validaAlimentos() {
  *   
  *   b.	InputNombre  no puede empezar por un número y debe contener entre
  *      3 y 20 caracteres.
- *      
- *   c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
+ */
+function validaNombre(){
+    var formNombre = document.forms["miFormulario"]["inputNombre"];
+    var pattern = new RegExp("^[A-z]{3,10}$");
+
+    if (pattern.test(formNombre.value)){
+        console.log("test ok");
+        return true;
+    } else {
+        console.log("test error");
+        return false;
+    }
+}
+
+/*   c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
  *      expresión regular para validar).
  *      
  *   d.	InputDia , inputMes y inputAno deben formar una fecha válida.
