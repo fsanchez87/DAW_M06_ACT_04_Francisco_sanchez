@@ -10,6 +10,12 @@ function validaAlimentos(){
     var formAlimentos = document.forms["miFormulario"]["inputAlimento"];
     console.log(formAlimentos);
     
+    for(var i=0; i<formAlimentos.length; i++){
+        if (expr) {
+            
+        } else {
+        }
+    }
     
 }
 
