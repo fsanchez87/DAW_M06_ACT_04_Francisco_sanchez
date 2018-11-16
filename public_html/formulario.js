@@ -1,4 +1,12 @@
 /*
+ * 
+ * @returns {undefined}
+ */
+function ini(){
+    
+}
+
+/*
  * Funcion para validar un formulario
  * @returns {undefined}
  */
@@ -13,6 +21,11 @@ function validaForm() {
     if (!validaNombre()) {
         formValido = false;
         window.alert("Nombre erronero");
+    }
+    
+    if (!validaCodigo()) {
+        formValido = false;
+        window.alert("Código erronero");
     }
 }
 /*
@@ -47,12 +60,14 @@ function validaAlimentos() {
  */
 function validaNombre(){
     var formNombre = document.forms["miFormulario"]["inputNombre"];
-    var pattern = new RegExp("^[A-z]{3,10}$");
+    var pattern = new RegExp("^[^0-9][a-zA-Z0-9_]{2,10}$");
 
     if (pattern.test(formNombre.value)){
         console.log("test ok");
+        document.forms["miFormulario"]["log"].innerHTML= formNombre.value + " : Texto Correcto";
         return true;
     } else {
+        document.forms["miFormulario"]["log"].innerHTML="Texto error";
         console.log("test error");
         return false;
     }
@@ -60,7 +75,19 @@ function validaNombre(){
 
 /*   c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
  *      expresión regular para validar).
- *      
+ */
+function validaCodigo(){
+    var formCodigo = document.forms["miFormulario"]["inputCodigo"];
+    var pattern = new RegExp("^[0-9]{13}$");
+    
+    if (pattern.test(formCodigo.value)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/*
  *   d.	InputDia , inputMes y inputAno deben formar una fecha válida.
  */
 
