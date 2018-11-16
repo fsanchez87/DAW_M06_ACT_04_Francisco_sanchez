@@ -2,10 +2,14 @@
  * 
  * @returns {undefined}
  */
-function ini(){
-    
-}
+function ini() {
 
+//    var miFormulario = document.forms["miFormulario"];
+//    var iNombre = miFormulario["inputNombre"];
+//    iNombre.addEventListener("keyup", validaNombre(), false);
+//   
+
+}
 /*
  * Funcion para validar un formulario
  * @returns {undefined}
@@ -13,20 +17,26 @@ function ini(){
 function validaForm() {
     var formValido = true;
 
-    if (!validaAlimentos()) {
-        formValido = false;
-        window.alert("Elige un alimento");
-    }
+//    if (!validaAlimentos()) {
+//        formValido = false;
+//        window.alert("Elige un alimento");
+//    }
+//    
+//    if (!validaNombre()) {
+//        formValido = false;
+//        window.alert("Nombre erronero");
+//    }
+//    
+//    if (!validaCodigo()) {
+//        formValido = false;
+//        window.alert("Código erronero");
+//    }
     
-    if (!validaNombre()) {
+    if (!validaFecha()) {
         formValido = false;
-        window.alert("Nombre erronero");
+        window.alert("Fecha erronea");
     }
-    
-    if (!validaCodigo()) {
-        formValido = false;
-        window.alert("Código erronero");
-    }
+    return formValido;
 }
 /*
  * 3.	Controla que si no se selecciona algún tipo de alimento (Congelado, Fruta
@@ -55,25 +65,24 @@ function validaAlimentos() {
  *      
  *   a.	No se debe enviar el formulario si alguno de los inputs es incorrecto.
  *   
- *   b.	InputNombre  no puede empezar por un número y debe contener entre
- *      3 y 20 caracteres.
+ *   b.	InputNombre  no puede empezar por un número y debe contener entre 3 y 20 caracteres.
  */
 function validaNombre(){
     var formNombre = document.forms["miFormulario"]["inputNombre"];
     var pattern = new RegExp("^[^0-9][a-zA-Z0-9_]{2,10}$");
 
     if (pattern.test(formNombre.value)){
-        console.log("test ok");
-        document.forms["miFormulario"]["log"].innerHTML= formNombre.value + " : Texto Correcto";
+        document.forms["miFormulario"]["log"].innerHTML=formNombre.value + " : Nombre correcto";
         return true;
     } else {
-        document.forms["miFormulario"]["log"].innerHTML="Texto error";
+        document.forms["miFormulario"]["log"].innerHTML=formNombre.value + ": Nombre incorrecto";
         console.log("test error");
         return false;
     }
 }
 
-/*   c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
+/*  
+ *  c.	InputCodigo debe tener 13 números, ninguna letra (puedes utilizar una  
  *      expresión regular para validar).
  */
 function validaCodigo(){
@@ -90,6 +99,25 @@ function validaCodigo(){
 /*
  *   d.	InputDia , inputMes y inputAno deben formar una fecha válida.
  */
+function validaFecha() {
+    var formDia = document.forms["miFormulario"]["inputDia"].value;
+    var formMes = document.forms["miFormulario"]["inputMes"].value;
+    var formAnio = document.forms["miFormulario"]["inputAnio"].value;
+    //variable para almacenar la fecha en formato DD/MM/YYYY
+    var fecha = formDia + "/" + formMes + "/" + formAnio;
+    
+    //formato DD/MM/YYYY
+    var pattern = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
+
+    if (pattern.test(fecha)) {
+        setCookie("fecha",(fecha),1);        
+        console.log("fecha ok");
+        return true;
+    } else {
+        console.log("fecha  no ok");
+        return false;
+    }
+}
 
 /*
  * 5.	Programa con JavaScript que al clicar sobre Guardar Datos se guarden todos
@@ -97,6 +125,53 @@ function validaCodigo(){
  *      inputNombre crea una cookie que guarde su valor, para el input inputCodigo 
  *      crea otra cookie con su valor, etc...)
  */
+
+function guardarCookies(){
+    if (!validaForm()) {
+    } else {
+        var miFormulario = document.forms["miFormulario"];
+              
+        setCookie("nombreProducto", (miFormulario["inputNombre"].value), 1);
+        setCookie("codigo", (miFormulario["inputCodigo"].value), 1);
+        setCookie("dia", (miFormulario["inputDia"].value), 1);
+        setCookie("mes", (miFormulario["inputMes"].value), 1);
+        setCookie("anio", (miFormulario["inputAnio"].value), 1);
+        setCookie("alimento", (miFormulario["inputAnio"].value), 1);
+        
+    }
+}
+
+
+/*
+ * 
+ * @param {type} cname
+ * @param {type} cvalue
+ * @param {type} exdays
+ * @returns {undefined}
+ */
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+/*
+ * 
+ * @param {type} cname
+ * @returns {undefined|String}
+ * 
+ */
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i].trim();
+        if (c.indexOf(name) == 0)
+            return
+        c.substring(name.length, c.length);
+    }
+    return "";
+}
 
 /*
  * 6.	Programa con JavaScript que al clicar sobre Recupera Datos se sustituya 

@@ -30,7 +30,7 @@ function inputNombreClicado() {
         console.log("El texto ha de ser mayor a 4 caracteres");
         document.forms["miForm"]["logErrores"].innerHTML="El texto ha de ser \n mayor a 4 caracteres";
     } else {
-        document.forms["miForm"]["logErrores"].innerHTML="Correcto"
+        document.forms["miForm"]["logErrores"].innerHTML="Correcto";
     }
     console.log(valorInput);
 }

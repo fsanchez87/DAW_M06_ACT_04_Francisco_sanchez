@@ -12,7 +12,7 @@ and open the template in the editor.
         <script src="formulario.js" type="text/javascript"></script>
         <link href="formulario.css" rel="stylesheet" type="text/css"/>
     </head>
-    <body>
+    <body onload="ini()">
         
         <div id="formulario">
             <form name="miFormulario" onsubmit=" return validaForm();">
@@ -38,7 +38,7 @@ and open the template in the editor.
                 <p>
                     <input type="submit" name="enviar" value="Regístrate"> 
                     <input type="reset"  name="restablecer" value="Limpia el formulario">
-                    <input type="button" name="guardar" value="Guardar Datos">
+                    <input type="button" name="guardar" value="Guardar Datos" onclick="guardarCookies()">
                     <input type="button" name="recuperar" value="Recuperar Datos">
                 </p>
                 <p><textarea name="log" rows="2" cols="60"></textarea></p>
