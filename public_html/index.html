@@ -18,14 +18,19 @@ and open the template in the editor.
             <form name="miFormulario" onsubmit=" return validaForm();">
                 <p>Nombre Producto: <input type="text" name="inputNombre" value="" size="20" maxlength="20" /> <br/></p>
                 <p>Código de Barras: <input type="text" name="inputCodigo" value="" size="20" maxlength="20" /> <br/></p>
+                <div id="fecha">
+                    <p> 
+
+                        Caducidad dia: <input type="text" name="inputDia" value="" size="8" maxlength="2"> 
+                        mes: <input type="text" name="inputMes" value="" size="8" maxlength="2"> 
+                        año: <input type="text" name="inputAnio" value="" size="8" maxlength="4">
+                    </p>
+                </div>
                 <p>
-                    Caducidad dia: <input type="text" name="inputDia" value="" size="8" maxlength="2"> 
-                    mes: <input type="text" name="inputMes" value="" size="8" maxlength="2"> 
-                    año: <input type="text" name="inputAnio" value="" size="8" maxlength="4">
-                </p>
-                <p>
-                    Oferta:<select name="oferta">
-                        <option value="normal">Normal</option>
+                    Oferta:
+                    <select name="oferta" id = "oferta">
+                        <option value="0">Selecciona una Oferta</option>
+                        <option value="Normal">Normal</option>
                         <option value="2x1">2x1</option>
                         <option value="20%">20%</option>
                         <option value="10%">10%</option>
@@ -41,7 +46,7 @@ and open the template in the editor.
                     <input type="button" name="guardar" value="Guardar Datos" onclick="guardarCookies()">
                     <input type="button" name="recuperar" value="Recuperar Datos">
                 </p>
-                <p><textarea name="log" rows="2" cols="60"></textarea></p>
+                <p><textarea name="log" rows="20" cols="60"></textarea></p>
             </form>
         </div>
     </body>
