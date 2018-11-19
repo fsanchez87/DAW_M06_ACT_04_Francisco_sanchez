@@ -161,6 +161,9 @@ function validaFecha() {
  *      
  *      Función que si el formulario es válido guarda los datos introducidos
  */
+
+
+
 function guardarCookies() {
     if (!validaForm()) {
     } else {
@@ -193,6 +196,22 @@ function setCookie(cname, cvalue, exdays) {
  * 6.	Programa con JavaScript que al clicar sobre Recupera Datos se sustituya 
  *      el valor de los inputs por el valor almacenado en su correspondiente cookie.
  */
+
+/*
+ *Función para pasar un string a booleano.
+ *Se usa para poder pasar el chevked de las cookies checkbox 
+ */
+function pasarBoleano(valor){
+    if (valor =="true") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*
+ * Función para recuperar las cookies guardadas
+ */
 function recuperarCookies() {
 
     document.forms["miFormulario"]["inputNombre"].value = getCookie("nombreProducto");
@@ -200,10 +219,11 @@ function recuperarCookies() {
     document.forms["miFormulario"]["inputDia"].value = getCookie("dia");
     document.forms["miFormulario"]["inputMes"].value = getCookie("mes");
     document.forms["miFormulario"]["inputAnio"].value = getCookie("anio");
-    document.forms["miFormulario"]["oferta"].value = getCookie("oferta");
-    document.forms["miFormulario"]["inputAlimento"][0].checked = getCookie("alimento_0");
-    document.forms["miFormulario"]["inputAlimento"][1].checked = getCookie("alimento_1");
-    document.forms["miFormulario"]["inputAlimento"][2].cheked = getCookie("alimento_2");
+    document.forms["miFormulario"]["oferta"].value = getCookie("oferta");    
+    // Para recuperar el checked se pasa el valor string a boleano con la función pasarBoleano
+    document.forms["miFormulario"]["inputAlimento"][0].checked = pasarBoleano(getCookie("alimento_0"));
+    document.forms["miFormulario"]["inputAlimento"][1].checked = pasarBoleano(getCookie("alimento_1"));
+    document.forms["miFormulario"]["inputAlimento"][2].checked = pasarBoleano(getCookie("alimento_2"));
 }
 
 /*
